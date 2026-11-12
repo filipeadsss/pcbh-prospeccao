@@ -1,1 +1,1 @@
-window.PCBH_CONFIG={"apiKey":"","authDomain":"","projectId":"","appId":""};
+window.PCBH_CONFIG={"apiKey":"AIzaSyC_IzSPwiA7AYwg5gndQFOrwM8YIg7E2QA","authDomain":"pcbh-prospeccao.firebaseapp.com","projectId":"pcbh-prospeccao","appId":"1:892302788771:web:0ecfb1ec0083ba0b669716"};

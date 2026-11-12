@@ -16,10 +16,8 @@ Site estático (`public/index.html`) na Vercel + Firebase (Firestore e Authentic
 7. **Firestore → Regras**: cole o conteúdo de `firestore.rules`, **troque os três e-mails de exemplo pelos reais** e publique.
 
 ### 2. Vercel
-1. Importe este repositório (Framework Preset: Other).
-2. Em *Settings → Environment Variables*, cadastre (veja `.env.example`): `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_APP_ID`.
-3. Faça o deploy (ou *Redeploy* se já tinha feito antes de cadastrar as variáveis).
-4. No Firebase, em *Authentication → Configurações → Domínios autorizados*, adicione o domínio da Vercel (ex.: `pcbh-prospeccao.vercel.app`).
+1. Importe este repositório (Framework Preset: Other). A configuração do Firebase já está em `public/config.js`; variáveis `FIREBASE_*` na Vercel são opcionais e, se existirem, substituem o arquivo.
+2. No Firebase, em *Authentication → Configurações → Domínios autorizados*, adicione o domínio da Vercel (ex.: `pcbh-prospeccao.vercel.app`).
 
 Para liberar uma pessoa nova depois: crie o usuário no Authentication e acrescente o e-mail na lista de `firestore.rules`.
 
