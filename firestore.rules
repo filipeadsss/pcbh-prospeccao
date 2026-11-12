@@ -1,0 +1,34 @@
+rules_version = '2';
+
+// Cole estas regras em: Firebase Console > Firestore Database > Regras > Publicar.
+// ANTES de publicar, troque os e-mails abaixo pelos e-mails de quem usa o CRM.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isEquipe() {
+      return request.auth != null
+        && (request.auth.token.email_verified == true
+            || request.auth.token.firebase.sign_in_provider == 'password')
+        && request.auth.token.email.lower() in [
+          'troque-email-filipe@exemplo.com',
+          'troque-email-flavia@exemplo.com',
+          'troque-email-yasmin@exemplo.com'
+        ];
+    }
+
+    // Uma marcação por lead (id = código do lead no Google Maps).
+    function marcacaoValida() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['st', 'at', 'por', 'porNome', 'notas', 'tent', 'tentAt', 'hist'])
+        && (!('st' in d) || d.st in ['novo', 'futuro', 'real', 'nao'])
+        && (!('notas' in d) || (d.notas is string && d.notas.size() <= 2000))
+        && (!('hist' in d) || (d.hist is list && d.hist.size() <= 20));
+    }
+
+    match /estado/{leadId} {
+      allow read: if isEquipe();
+      allow create, update: if isEquipe() && marcacaoValida();
+      allow delete: if isEquipe();
+    }
+  }
+}

@@ -1,6 +1,11 @@
 // Gera public/config.js a partir das variáveis de ambiente da Vercel.
+// São os valores públicos do app da Web do Firebase (não são segredos); a proteção está em firestore.rules.
 const fs = require('fs');
-const url = process.env.SUPABASE_URL || '';
-const key = process.env.SUPABASE_ANON_KEY || '';
-fs.writeFileSync('public/config.js', 'window.PCBH_CONFIG=' + JSON.stringify({ SUPABASE_URL: url, SUPABASE_ANON_KEY: key }) + ';\n');
-console.log(url ? 'config.js gerado.' : 'AVISO: SUPABASE_URL não definida; o site vai mostrar "configuração pendente".');
+const cfg = {
+  apiKey: process.env.FIREBASE_API_KEY || '',
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN || '',
+  projectId: process.env.FIREBASE_PROJECT_ID || '',
+  appId: process.env.FIREBASE_APP_ID || '',
+};
+fs.writeFileSync('public/config.js', 'window.PCBH_CONFIG=' + JSON.stringify(cfg) + ';\n');
+console.log(cfg.apiKey ? 'config.js gerado.' : 'AVISO: variáveis do Firebase não definidas; o site vai mostrar "configuração pendente".');

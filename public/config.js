@@ -1,1 +1,1 @@
-window.PCBH_CONFIG={"SUPABASE_URL":"","SUPABASE_ANON_KEY":""};
+window.PCBH_CONFIG={"apiKey":"","authDomain":"","projectId":"","appId":""};
